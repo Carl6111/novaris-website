@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Carl.AI — AI Automation Agency Website
 
-## Getting Started
+Marketing- und Lead-Gen-Website für Carl Staerkes AI Automation Agency.
+Next.js 16 (App Router) · TypeScript · Tailwind v4 · Vercel-ready.
 
-First, run the development server:
+Das Dark-Design ist aus der bestehenden Landing-Page
+(`~/Downloads/agency-website/index.html`) portiert und auf eine
+Multi-Page-Struktur erweitert.
+
+## Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # Production-Build
+npm start        # Build lokal starten
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Seitenstruktur
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Route | Inhalt |
+|---|---|
+| `/` | Homepage: Hero, Services, Agents, Process, Anwendungsfälle, FAQ, CTA |
+| `/leistungen` + `/leistungen/[slug]` | Übersicht + 4 Detailseiten |
+| `/referenzen` | Anwendungsfälle mit Branchenfilter |
+| `/blog` + `/blog/[slug]` | Blog (Starter-Stubs in `src/lib/posts.ts`) |
+| `/ueber-uns`, `/kontakt`, `/preise` | Standardseiten |
+| `/impressum`, `/datenschutz` | Rechtliches (Platzhalter) |
+| `/sitemap.xml`, `/robots.txt` | Auto-generiert |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Zentrale Konfiguration
 
-## Learn More
+Fast alle Inhalte/Daten liegen in:
 
-To learn more about Next.js, take a look at the following resources:
+- `src/lib/site.ts` — NAP, Kontakt, Navigation, Services, Anwendungsfälle, FAQ
+- `src/lib/posts.ts` — Blog-Posts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Wichtig vor Go-Live (Carl)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Im Code mit `TODO[carl]` oder `[PLATZHALTER]` markiert:
 
-## Deploy on Vercel
+- [ ] **Echte Domain** in `src/lib/site.ts` (`SITE.url`)
+- [ ] **Telefonnummer** + optional WhatsApp in `src/lib/site.ts`
+- [ ] **Impressum** mit echter Anschrift + USt/Kleinunternehmer-Hinweis
+- [ ] **Datenschutzerklärung** rechtlich prüfen lassen (Vorlage ≠ Beratung)
+- [ ] **Kontaktformular-Versand** anbinden (`src/app/api/contact/route.ts`)
+- [ ] **Anwendungsfälle**: Sobald echte Kunden existieren, `isPlaceholder`
+      entfernen und echte Daten eintragen. Bis dahin sichtbar als „Beispiel"
+      gekennzeichnet (UWG §5 — keine erfundenen Ergebnisse live).
+- [ ] **Blog-Texte** finalisieren (aktuell Entwürfe)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Geplante Integrationen (noch Platzhalter)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Feature | Status | Ort |
+|---|---|---|
+| Kontaktformular-Versand | Validierung steht, Versand offen | `api/contact/route.ts` |
+| KI-Chatbot | UI-only | `components/ChatWidget.tsx` |
+| Analytics | nicht eingebunden | Empfehlung: Plausible (cookieless) |
+
+## Env-Variablen
+
+Aktuell keine zwingend nötig. Für spätere Integrationen
+(`.env.local`, nie committen):
+
+```bash
+# Kontaktformular-Versand (z. B. Resend)
+RESEND_API_KEY=
+
+# KI-Chatbot (Anthropic)
+ANTHROPIC_API_KEY=
+
+# optional: Analytics-Domain (Plausible)
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=
+```
+
+> Secrets ausschließlich serverseitig. Nur Variablen mit `NEXT_PUBLIC_`
+> landen im Client-Bundle.
+
+## Deploy (Vercel)
+
+```bash
+npx vercel        # Preview
+npx vercel --prod # Production
+```
+
+Repo public halten + diese `.gitignore` → Vercel-Deploy bleibt unproblematisch.

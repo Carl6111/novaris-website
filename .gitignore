@@ -22,7 +22,22 @@
 
 # misc
 .DS_Store
+Thumbs.db
+
+# secrets & certificates
 *.pem
+*.key
+*.p12
+*.pfx
+*.cert
+*.crt
+id_rsa
+id_ed25519
+secrets.json
+credentials.json
+tokens.json
+service-account.json
+*.secret.*
 
 # debug
 npm-debug.log*
@@ -39,3 +54,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local scratch / heavy source media (not used by build)
+/*.mp4
+/robot eye*.jpg
+/novarisoriginal.png
+/_*.mjs
+_shoot*.mjs
