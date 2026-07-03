@@ -10,6 +10,7 @@ import { JsonLd, organizationSchema } from "@/components/JsonLd";
 import HideOnEye from "@/components/HideOnEye";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
+import BookingModal from "@/components/BookingModal";
 import { SITE } from "@/lib/site";
 
 const cormorant = Cormorant_Garamond({
@@ -71,6 +72,7 @@ export default function RootLayout({
           <ChatWidget />
           <CookieBanner />
           <ExitIntentPopup />
+          <BookingModal />
         </HideOnEye>
       </body>
     </html>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import BookingButton from "@/components/BookingButton";
 import HeroVisual from "@/components/HeroVisual";
 import ModuleIcon from "@/components/ModuleIcon";
 import PlatformShowcase from "@/components/PlatformShowcase";
@@ -44,13 +45,16 @@ export default function HomePage() {
             lässt.
           </p>
           <div className="hero-actions">
-            <Link href={BOOKING.href} className="btn-primary">
+            <BookingButton className="btn-primary">
               {BOOKING.label}
-            </Link>
+            </BookingButton>
             <Link href="#plattform" className="btn-ghost">
               Plattform ansehen
             </Link>
           </div>
+          <p className="cta-trust">
+            Kostenlos &amp; unverbindlich · Monatlich kündbar · DSGVO-konform
+          </p>
         </div>
         <div className="scroll-cue" aria-hidden>
           <span className="scroll-cue-line" />
@@ -206,6 +210,36 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ============ TECH-STRIP (ehrlich: echter Code, kein Baukasten) ============ */}
+      <section className="section tech-strip">
+        <Reveal>
+          <div className="label-mono" style={{ justifyContent: "center" }}>
+            Gebaut auf echtem Code
+          </div>
+          <p className="tech-strip-line">
+            Kein Baukasten, kein Zapier-Bastelwerk. Deine Plattform läuft auf dem
+            gleichen Stack wie moderne Software-Produkte.
+          </p>
+        </Reveal>
+        <Reveal delay={1}>
+          <div className="tech-logos">
+            {[
+              "Next.js",
+              "React",
+              "Claude",
+              "OpenAI",
+              "Supabase",
+              "Stripe",
+              "Vercel",
+            ].map((t) => (
+              <span className="tech-logo" key={t}>
+                {t}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
       {/* ============ FAQ ============ */}
       <section className="section surface" id="faq">
         <Reveal>
@@ -235,13 +269,16 @@ export default function HomePage() {
               Betrieb an und zeigen dir den größten Hebel — in 20 Minuten.
             </p>
             <div className="hero-actions" style={{ justifyContent: "center" }}>
-              <Link href={BOOKING.href} className="btn-primary">
+              <BookingButton className="btn-primary">
                 {BOOKING.label}
-              </Link>
+              </BookingButton>
               <a href={SITE.phoneHref} className="btn-ghost">
                 Direkt anrufen
               </a>
             </div>
+            <p className="cta-trust" style={{ textAlign: "center" }}>
+              Kostenlos &amp; unverbindlich · Monatlich kündbar · DSGVO-konform
+            </p>
           </div>
         </Reveal>
       </section>

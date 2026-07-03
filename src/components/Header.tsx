@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import BookingButton from "@/components/BookingButton";
 import { NAV, SITE } from "@/lib/site";
 
 export default function Header() {
@@ -38,9 +39,7 @@ export default function Header() {
         ))}
       </ul>
 
-      <Link href="/kontakt" className="nav-cta">
-        Projekt starten →
-      </Link>
+      <BookingButton className="nav-cta">Gespräch buchen →</BookingButton>
 
       <button
         className="nav-burger"
@@ -63,9 +62,15 @@ export default function Header() {
               </li>
             ))}
           </ul>
+          <BookingButton
+            className="btn-primary"
+            onClick={() => setOpen(false)}
+          >
+            Gespräch buchen
+          </BookingButton>
           <a
             href={SITE.phoneHref}
-            className="btn-primary"
+            className="btn-ghost"
             onClick={() => setOpen(false)}
           >
             Anrufen
